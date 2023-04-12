@@ -8,8 +8,7 @@
 import SwiftUI
 
 extension Color {
-    static let WB = Color("WB")
-    static let BW = Color("BW")
+    static let BB = Color("BB")
 }
 
 // MARK: Custom View Builder
@@ -67,7 +66,7 @@ struct CustomRefreshView<Content: View>: View {
             .overlay(alignment: .top, content: {
                 // MARK: For More See Shape Morphing And MetaBall Animations Video
                 Canvas { context, size in
-                    context.addFilter(.alphaThreshold(min: 0.5, color: .BW))
+                    context.addFilter(.alphaThreshold(min: 0.5, color: .BB))
                     context.addFilter(.blur(radius: 10))
                     
                     // Drawing Inside New Layer
@@ -144,7 +143,7 @@ struct CustomRefreshView<Content: View>: View {
         } else {
             Capsule()
                 .fill(.black)
-                .frame(width: 126, height: 37)
+                .frame(width: 126, height: 35)
         }
     }
     
@@ -158,13 +157,13 @@ struct CustomRefreshView<Content: View>: View {
         ZStack {
             Image(systemName: "arrow.down")
                 .font(.callout.bold())
-                .foregroundColor(.WB)
+                .foregroundColor(.white)
                 .frame(width: 38, height: 38)
                 .rotationEffect(.init(degrees: scrollDelegate.progress * 180))
                 .opacity(scrollDelegate.isEligible ? 0 : 1)
             
             ProgressView()
-                .tint(.WB)
+                .tint(.white)
                 .frame(width: 38, height: 38)
                 .opacity(scrollDelegate.isEligible ? 1 : 0)
         }
@@ -187,7 +186,7 @@ struct CustomRefreshView_Previews: PreviewProvider {
                 Rectangle()
                     .fill(.yellow)
                     .frame(height: 200)
-                 */
+                */
             }
         } onRefresh: {
             
