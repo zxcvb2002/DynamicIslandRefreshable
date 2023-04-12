@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+extension Color {
+    static let WB = Color("WB")
+    static let BW = Color("BW")
+}
+
 // MARK: Custom View Builder
 struct CustomRefreshView<Content: View>: View {
     var content: Content
@@ -62,7 +67,7 @@ struct CustomRefreshView<Content: View>: View {
             .overlay(alignment: .top, content: {
                 // MARK: For More See Shape Morphing And MetaBall Animations Video
                 Canvas { context, size in
-                    context.addFilter(.alphaThreshold(min: 0.5, color: .black))
+                    context.addFilter(.alphaThreshold(min: 0.5, color: .BW))
                     context.addFilter(.blur(radius: 10))
                     
                     // Drawing Inside New Layer
@@ -153,13 +158,13 @@ struct CustomRefreshView<Content: View>: View {
         ZStack {
             Image(systemName: "arrow.down")
                 .font(.callout.bold())
-                .foregroundColor(.white)
+                .foregroundColor(.WB)
                 .frame(width: 38, height: 38)
                 .rotationEffect(.init(degrees: scrollDelegate.progress * 180))
                 .opacity(scrollDelegate.isEligible ? 0 : 1)
             
             ProgressView()
-                .tint(.white)
+                .tint(.WB)
                 .frame(width: 38, height: 38)
                 .opacity(scrollDelegate.isEligible ? 1 : 0)
         }
@@ -236,7 +241,7 @@ class ScrollViewModel: NSObject, ObservableObject ,UIGestureRecognizerDelegate {
     @objc
     func onGestureChange(gesture: UIPanGestureRecognizer) {
         if gesture.state == .cancelled || gesture.state == .ended {
-            print("User Released Touch")
+            // print("User Released Touch")
             // MARK: Your Max Duration Goes Here
             if !isRefreshing {
                 if scrollOffset > 150 {
