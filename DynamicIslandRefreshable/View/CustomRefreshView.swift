@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-extension Color {
-    static let BB = Color("BB")
-}
-
 // MARK: Custom View Builder
 struct CustomRefreshView<Content: View>: View {
     var content: Content
@@ -66,7 +62,7 @@ struct CustomRefreshView<Content: View>: View {
             .overlay(alignment: .top, content: {
                 // MARK: For More See Shape Morphing And MetaBall Animations Video
                 Canvas { context, size in
-                    context.addFilter(.alphaThreshold(min: 0.5, color: .BB))
+                    context.addFilter(.alphaThreshold(min: 0.5, color: .black))
                     context.addFilter(.blur(radius: 10))
                     
                     // Drawing Inside New Layer
